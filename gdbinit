@@ -77,11 +77,11 @@ set $COLOREDPROMPT = 1
 # SETCOLOR1STLINE and modify it :-)
 set $SETCOLOR1STLINE = 0
 # set to 0 to remove display of objectivec messages (default is 1)
-set $SHOWOBJECTIVEC = 1
+set $SHOWOBJECTIVEC = 0
 # set to 0 to remove display of cpu registers (default is 1)
 set $SHOWCPUREGISTERS = 1
 # set to 1 to enable display of stack (default is 0)
-set $SHOWSTACK = 0
+set $SHOWSTACK = 1
 # set to 1 to enable display of data window (default is 0)
 set $SHOWDATAWIN = 0
 # set to 0 to disable colored display of changed registers
@@ -100,7 +100,10 @@ set $X86FLAVOR = 0
 set $USECOLOR = 1
 # to use with remote KDP
 set $KDP64BITS = -1
-set $64BITS = 0
+# to set list
+set $SHOWLIST = 1
+
+set $64BITS = 1
 
 set confirm off
 set verbose off
@@ -704,7 +707,7 @@ define regarm
     # R0
     color $COLOR_REGNAME
     printf "R0:"
-    if ($r0 != $oldr0 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -713,7 +716,7 @@ define regarm
     # R1
     color $COLOR_REGNAME
     printf "R1:"
-    if ($r1 != $oldr1 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -722,7 +725,7 @@ define regarm
 	# R2
     color $COLOR_REGNAME
     printf "R2:"
-    if ($r2 != $oldr2 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -731,7 +734,7 @@ define regarm
 	# R3
     color $COLOR_REGNAME
     printf "R3:"
-    if ($r3 != $oldr3 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -741,7 +744,7 @@ define regarm
 	# R4
     color $COLOR_REGNAME
     printf "R4:"
-    if ($r4 != $oldr4 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -750,7 +753,7 @@ define regarm
     # R5
     color $COLOR_REGNAME
     printf "R5:"
-    if ($r5 != $oldr5 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -759,7 +762,7 @@ define regarm
 	# R6
     color $COLOR_REGNAME
     printf "R6:"
-    if ($r6 != $oldr6 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -768,7 +771,7 @@ define regarm
 	# R7
     color $COLOR_REGNAME
     printf "R7:"
-    if ($r7 != $oldr7 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -778,7 +781,7 @@ define regarm
 	# R8
     color $COLOR_REGNAME
     printf "R8:"
-    if ($r8 != $oldr8 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -787,7 +790,7 @@ define regarm
 	# R9
     color $COLOR_REGNAME
     printf "R9:"
-    if ($r9 != $oldr9 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -796,7 +799,7 @@ define regarm
 	# R10
     color $COLOR_REGNAME
     printf "R10:"
-    if ($r10 != $oldr10 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -805,7 +808,7 @@ define regarm
 	# R11
     color $COLOR_REGNAME
     printf "R11:"
-    if ($r11 != $oldr11 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -816,7 +819,7 @@ define regarm
     # R12
     color $COLOR_REGNAME
     printf "  R12:"
-    if ($r12 != $oldr12 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -826,7 +829,7 @@ define regarm
     # SP
     color $COLOR_REGNAME
     printf "SP:"
-    if ($sp != $oldsp && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -835,7 +838,7 @@ define regarm
 	# LR
     color $COLOR_REGNAME
     printf "LR:"
-    if ($lr != $oldlr && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -864,7 +867,7 @@ define regx64
     # RAX
     color $COLOR_REGNAME
     printf "RAX:"
-    if ($rax != $oldrax && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -873,7 +876,7 @@ define regx64
     # RBX
     color $COLOR_REGNAME
     printf "RBX:"
-    if ($rbx != $oldrbx && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -882,7 +885,7 @@ define regx64
     # RBP
     color $COLOR_REGNAME
     printf "RBP:"
-    if ($rbp != $oldrbp && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -891,7 +894,7 @@ define regx64
     # RSP
     color $COLOR_REGNAME
     printf "RSP:"
-    if ($rsp != $oldrsp && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
         color $COLOR_REGVAL_MODIFIED
     else
         color $COLOR_REGVAL
@@ -906,7 +909,7 @@ define regx64
     # RDI
     color $COLOR_REGNAME
     printf "RDI:"
-    if ($rdi != $oldrdi && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -915,7 +918,7 @@ define regx64
 	# RSI
     color $COLOR_REGNAME
    	printf "RSI:"
-	if ($rsi != $oldrsi && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -924,7 +927,7 @@ define regx64
 	# RDX
     color $COLOR_REGNAME
    	printf "RDX:"
-	if ($rdx != $oldrdx && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -933,7 +936,7 @@ define regx64
 	# RCX
     color $COLOR_REGNAME
    	printf "RCX:"
-	if ($rcx != $oldrcx && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -947,7 +950,7 @@ define regx64
     # R8
     color $COLOR_REGNAME
    	printf "R8 :"
-	if ($r8 != $oldr8 && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -956,7 +959,7 @@ define regx64
     # R9
     color $COLOR_REGNAME
    	printf "R9 :"
-    if ($r9 != $oldr9 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -965,7 +968,7 @@ define regx64
     # R10
     color $COLOR_REGNAME
    	printf "R10:"
-    if ($r10 != $oldr10 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -974,7 +977,7 @@ define regx64
     # R11
    	color $COLOR_REGNAME
     printf "R11:"
-	if ($r11 != $oldr11 && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -983,7 +986,7 @@ define regx64
     # R12
     color $COLOR_REGNAME
 	printf "R12:"
-    if ($r12 != $oldr12 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -992,7 +995,7 @@ define regx64
     # R13
     color $COLOR_REGNAME
    	printf "R13:"
-    if ($r13 != $oldr13 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1001,7 +1004,7 @@ define regx64
     # R14
     color $COLOR_REGNAME
     printf "R14:"
-    if ($r14 != $oldr14 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1010,7 +1013,7 @@ define regx64
     # R15
 	color $COLOR_REGNAME
     printf "R15:"
-    if ($r15 != $oldr15 && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1053,7 +1056,7 @@ define regx86
     # EAX
     color $COLOR_REGNAME
 	printf "EAX:"
-    if ($eax != $oldeax && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
    	 	color $COLOR_REGVAL_MODIFIED
    	else
    	 	color $COLOR_REGVAL
@@ -1062,7 +1065,7 @@ define regx86
    	# EBX
     color $COLOR_REGNAME
    	printf "EBX:"
-   	if ($ebx != $oldebx && $SHOWREGCHANGES == 1) 
+   	if ($SHOWREGCHANGES == 1) 
 	    color $COLOR_REGVAL_MODIFIED		
    	else
 	    color $COLOR_REGVAL
@@ -1071,7 +1074,7 @@ define regx86
    	# ECX
     color $COLOR_REGNAME
    	printf "ECX:"
-   	if ($ecx != $oldecx && $SHOWREGCHANGES == 1)
+   	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1080,7 +1083,7 @@ define regx86
 	# EDX
 	color $COLOR_REGNAME
 	printf "EDX:"
-	if ($edx != $oldedx && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1095,7 +1098,7 @@ define regx86
     # ESI
 	color $COLOR_REGNAME
     printf "ESI:"
-    if ($esi != $oldesi && $SHOWREGCHANGES == 1)
+    if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1104,7 +1107,7 @@ define regx86
 	# EDI
 	color $COLOR_REGNAME
     printf "EDI:"
-	if ($edi != $oldedi && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1113,7 +1116,7 @@ define regx86
 	# EBP
 	color $COLOR_REGNAME
 	printf "EBP:"
-	if ($ebp != $oldebp && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -1122,7 +1125,7 @@ define regx86
 	# ESP
 	color $COLOR_REGNAME
     printf "ESP:"
-	if ($esp != $oldesp && $SHOWREGCHANGES == 1)
+	if ($SHOWREGCHANGES == 1)
 	    color $COLOR_REGVAL_MODIFIED
 	else
 	    color $COLOR_REGVAL
@@ -2165,14 +2168,26 @@ define context
         x /i
         set $context_i--
     end
-    color $COLOR_SEPARATOR
-    printf "----------------------------------------"
-    printf "----------------------------------------"
-    if ($64BITS == 1)
-        printf "---------------------------------------------\n"
-	else
-	    printf "\n"
-	end
+    if $SHOWLIST == 1
+        color $COLOR_SEPARATOR
+	    printf "----------------------------------------"
+	    printf "----------------------------------"
+	    if ($64BITS == 1)
+	        printf "---------------------------------------------"
+	    end
+	    color $COLOR_SEPARATOR
+	    color_bold
+	    printf "[list]\n"
+        color $COLOR_SEPARATOR
+                list
+            printf "----------------------------------------"
+            printf "----------------------------------------"
+            if ($64BITS == 1)
+                printf "---------------------------------------------\n"
+	    else
+	        printf "\n"
+	    end
+        end   
     color_reset
 end
 document context
